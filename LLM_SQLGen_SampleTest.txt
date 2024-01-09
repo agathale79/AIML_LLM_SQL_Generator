@@ -1,0 +1,25 @@
+Generate query 1)
+
+		Table Details::
+		Employee: emp_no, dept_no, name, salary, role, mgr_no
+		Dept: dept_no, dept_name, location
+
+		Query request string: Write a query that will query for all employee name from given dept_name
+
+Generate query 2)
+
+		Table Details::
+		Employee: emp_no, dept_no, name, salary, role, mgr_no
+		Dept: dept_no, dept_name, location
+
+		Query request string: Write a query that will query for all employee name from given dept_name , not all employee has dept_no assigned
+
+Generate query 3)
+
+		Table Details::
+		Employee: empno, Name, role, dept_no, salary, manager
+		Dept: dept_no, dept_name, location_code
+		location: location_code, location_city, location_country
+
+		Query request string: Write a SQL query to get average/min/max salary of employees in at all location_city use group by
+

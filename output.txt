@@ -1,0 +1,94 @@
+(llm_suggest_query) %n@%m %1~ %# #Simple example
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# python3 suggestQuery.py
+Enter the number of tables: 2
+Enter Table 1 Name: Employee
+Enter Table 1 's columns (comma seperated): emp_no, dept_no, name, salary, role, mgr_no
+Enter Table 2 Name: Dept
+Enter Table 2 's columns (comma seperated): dept_no, dept_name, location
+Table Details::
+Employee: emp_no, dept_no, name, salary, role, mgr_no
+Dept: dept_no, dept_name, location
+
+What query you want to generate ? :: Write a query that will query for all employee name from given dept_name
+```sql
+SELECT e.name
+FROM Employee e
+JOIN Dept d ON e.dept_no = d.dept_no
+WHERE d.dept_name = 'given_dept_name';
+```
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# #Cool!
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# # second example with left outer join SQL , let see if it generates it!!
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# python3 suggestQuery.py
+Enter the number of tables: 2
+Enter Table 1 Name: Employee
+Enter Table 1 's columns (comma seperated): emp_no, dept_no, name, salary, role, mgr_no
+Enter Table 2 Name: Dept
+Enter Table 2 's columns (comma seperated): dept_no, dept_name, location
+Table Details::
+Employee: emp_no, dept_no, name, salary, role, mgr_no
+Dept: dept_no, dept_name, location
+
+What query you want to generate ? :: Write a query that will query for all employee name from given dept_name , not all employee has dept_no assigned
+```sql
+SELECT e.name
+FROM Employee e
+LEFT JOIN Dept d ON e.dept_no = d.dept_no
+WHERE d.dept_name = 'given_dept_name' OR e.dept_no IS NULL;
+```
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# #Perfecto !!!
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# # Lets try little complex with three tables and FK in play!!
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# 
+(llm_suggest_query) %n@%m %1~ %# python3 suggestQuery.py
+Enter the number of tables: 3
+Enter Table 1 Name: Employee
+Enter Table 1 's columns (comma seperated): empno, Name, role, dept_no, salary, manager
+Enter Table 2 Name: Dept
+Enter Table 2 's columns (comma seperated): dept_no, dept_name, location_code
+Enter Table 3 Name: location
+Enter Table 3 's columns (comma seperated): location_code, location_city, location_country
+Table Details::
+Employee: empno, Name, role, dept_no, salary, manager
+Dept: dept_no, dept_name, location_code
+location: location_code, location_city, location_country
+
+What query you want to generate ? :: Write a SQL query to get average/min/max salary of employees in at all location_city use group by
+```sql
+SELECT
+    l.location_city,
+    AVG(e.salary) AS average_salary,
+    MIN(e.salary) AS min_salary,
+    MAX(e.salary) AS max_salary
+FROM
+    Employee e
+JOIN
+    Dept d ON e.dept_no = d.dept_no
+JOIN
+    Location l ON d.location_code = l.location_code
+GROUP BY
+    l.location_city;
+```
+(llm_suggest_query) %n@%m %1~ %# #woh!!!
+(llm_suggest_query) %n@%m %1~ %# python3 suggestQuery.py
+Enter the number of tables: 1 
+Enter Table 1 Name: tab1
+Enter Table 1 's columns (comma seperated): c1,c2,c3
+Table Details::
+tab1: c1,c2,c3
+
+What query do you want to generate? :: Write SQL to select all values of tab1
+```sql
+SELECT *
+FROM tab1;
+```
+(llm_suggest_query) %n@%m %1~ %# 
